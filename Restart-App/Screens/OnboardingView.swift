@@ -15,8 +15,8 @@ struct OnboardingView: View {
             Color("ColorBlue")
                 .ignoresSafeArea(.all, edges: .all)
             VStack(spacing: 20) {
-                // Mark: - HEADER
                 
+                // Mark: - HEADER
                 Spacer()
                 
                 VStack(spacing: 0) {
@@ -37,7 +37,6 @@ struct OnboardingView: View {
                 } //: HEADER
                 
                 // Mark: - CENTER
-                
                 ZStack {
                     ZStack {
                         Circle()
@@ -57,7 +56,6 @@ struct OnboardingView: View {
                 Spacer()
                 
                 // Mark: - FOOTER
-                
                 ZStack {
                     Capsule()
                         .fill(.white.opacity(0.2))
