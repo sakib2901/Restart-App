@@ -11,12 +11,41 @@ struct HomeView: View {
     @AppStorage("onboarding") var isOnboardingViewActive: Bool = false
     
     var body: some View {
-        VStack(spacing: 20) {
-            Text("HomeView")
-                .font(.largeTitle)
-            
-            Button("Restart") {
-                isOnboardingViewActive = true
+        ZStack {
+            VStack(spacing: 20) {
+                
+                Spacer()
+                
+                ZStack {
+                    
+                    CircleGroupView(ShapeColor: .gray, ShapeOpacity: 0.1)
+                    
+                    Image("character-2")
+                        .resizable()
+                        .scaledToFit()
+                }
+                                
+                Text("""
+                The time that leads to mastery is
+                dependent on the intensity of our focus
+                """)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                
+                Spacer()
+                
+                Button(action: {
+                    isOnboardingViewActive = true
+                }) {
+                    Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
+                        .imageScale(.large)
+                    Text("Restart")
+                        .font(.system(.title3, design: .rounded))
+                }
+                .frame(width: 150, height: 50)
+                .foregroundColor(.white)
+                .background(Color("ColorBlue"))
+                .clipShape(Capsule())
             }
         }
     }
