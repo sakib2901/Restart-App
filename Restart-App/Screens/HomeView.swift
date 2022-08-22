@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @AppStorage("onboarding") var isOnboardingViewActive: Bool = false
+    @State private var isAnimating: Bool = false
     
     var body: some View {
         ZStack {
@@ -23,6 +24,8 @@ struct HomeView: View {
                     Image("character-2")
                         .resizable()
                         .scaledToFit()
+                        .offset(y: isAnimating ? -35 : 35)
+                        .animation(Animation.easeInOut(duration: 4.0).repeatForever(), value: isAnimating)
                 }
                                 
                 Text("""
@@ -35,7 +38,9 @@ struct HomeView: View {
                 Spacer()
                 
                 Button(action: {
-                    isOnboardingViewActive = true
+                    withAnimation(Animation.easeOut(duration: 0.5)) {
+                        isOnboardingViewActive = true
+                    }
                 }) {
                     Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
                         .imageScale(.large)
@@ -48,6 +53,11 @@ struct HomeView: View {
                 .clipShape(Capsule())
             }
         }
+        .onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                isAnimating = true
+            })
+        })
     }
 }
 
